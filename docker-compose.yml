@@ -15,12 +15,12 @@ services:
       - DB_PASSWORD=password
       - DB_NAME=mtb_db
       - DB_PORT=3306
-      - DIR_PATH=/MTB_WGS_cluster_analysis
+      - DIR_PATH=/app/MTB_WGS_cluster_analysis
       - NEXT_PUBLIC_APP_ENV=docker
       - NEXT_PUBLIC_API_URL_PROD=http://localhost:3001
       - JWT_SECRET=your-secret-goes-here
     volumes:
-      - ./MTB_WGS_cluster_analysis:/MTB_WGS_cluster_analysis
+      - ./MTB_WGS_cluster_analysis:/app/MTB_WGS_cluster_analysis
     depends_on:
       - db
   db:
