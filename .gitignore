@@ -1,1 +1,7 @@
 *.swp
+
+# Environment files (keep template committed)
+MTB_WGS_cluster_analysis
+.env
+.env.*
+!.env.example
