@@ -1,6 +1,0 @@
-[submodule "mtb-frontend"]
-	path = mtb-frontend
-	url = https://github.com/kannn044/mtb-frontend.git
-[submodule "mtb-backend"]
-	path = mtb-backend
-	url = https://github.com/kannn044/mtb-backend.git
