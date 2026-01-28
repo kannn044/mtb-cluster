@@ -1,0 +1,17 @@
+name: Trigger mtb-cluster update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger update in mtb-cluster
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: kannn044/mtb-cluster
+          event-type: update_submodules
