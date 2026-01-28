@@ -1,8 +1,9 @@
 version: '3.8'
 services:
-  backend:
-    build: ./mtb-backend
+  app:
+    build: .
     ports:
+      - "3000:3000"
       - "3001:3001"
     environment:
       - DB_HOST=db
@@ -15,12 +16,6 @@ services:
       - ./MTB_WGS_cluster_analysis:/MTB_WGS_cluster_analysis
     depends_on:
       - db
-  frontend:
-    build: ./mtb-frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
   db:
     image: mysql:8.0
     restart: always
