@@ -1,7 +1,11 @@
 version: '3.8'
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        - NEXT_PUBLIC_APP_ENV=docker
+        - NEXT_PUBLIC_API_URL_PROD=http://localhost:3001
     ports:
       - "3000:3000"
       - "3001:3001"
@@ -12,6 +16,8 @@ services:
       - DB_NAME=mtb_db
       - DB_PORT=3306
       - DIR_PATH=/MTB_WGS_cluster_analysis
+      - NEXT_PUBLIC_APP_ENV=docker
+      - NEXT_PUBLIC_API_URL_PROD=http://localhost:3001
     volumes:
       - ./MTB_WGS_cluster_analysis:/MTB_WGS_cluster_analysis
     depends_on:

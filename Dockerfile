@@ -3,6 +3,14 @@ FROM node:20
 # Install git and pm2
 RUN apt-get update && apt-get install -y git && npm install -g pm2
 
+# Declare build arguments
+ARG NEXT_PUBLIC_APP_ENV
+ARG NEXT_PUBLIC_API_URL_PROD
+
+# Set environment variables for the build
+ENV NEXT_PUBLIC_APP_ENV=${NEXT_PUBLIC_APP_ENV}
+ENV NEXT_PUBLIC_API_URL_PROD=${NEXT_PUBLIC_API_URL_PROD}
+
 WORKDIR /app
 
 # Clone frontend and build
@@ -26,4 +34,4 @@ COPY process.json .
 EXPOSE 3000 3001
 
 # Start services
-CMD ["pm2-runtime", "process.json"]
+CMD ["pm2", "start", "process.json", "--no-daemon"]

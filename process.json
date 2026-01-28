@@ -3,22 +3,14 @@
     {
       "name": "mtb-frontend",
       "script": "npm",
-      "args": "start",
-      "cwd": "/app/mtb-frontend",
-      "instances": 1,
-      "autorestart": true,
-      "watch": false,
-      "max_memory_restart": "1G"
+      "args" : "start",
+      "cwd": "/app/mtb-frontend"
     },
     {
       "name": "mtb-backend",
-      "script": "npm",
-      "args": "start",
-      "cwd": "/app/mtb-backend",
-      "instances": 1,
-      "autorestart": true,
-      "watch": false,
-      "max_memory_restart": "1G"
+      "script": "node",
+      "args": "dist/server.js",
+      "cwd": "/app/mtb-backend"
     }
   ]
 }
