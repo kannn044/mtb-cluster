@@ -1,0 +1,2 @@
+patient_id	sample_id	fastq_1	fastq_2	collection_date	district	province	sex	age	ethnic_group	education	occupation	chest_x_ray	treatment_outcome
+test	test	sample_01_1.fastq.gz	sample_01_2.fastq.gz	27/Jan/2026	Phatthana Nikhom	Lop Buri	Male	123	tes	test	test	test	test

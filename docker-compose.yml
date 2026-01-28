@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  backend:
+    build: ./mtb-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_HOST=db
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=mtb_db
+      - DB_PORT=3306
+      - DIR_PATH=/MTB_WGS_cluster_analysis
+    volumes:
+      - ./MTB_WGS_cluster_analysis:/MTB_WGS_cluster_analysis
+    depends_on:
+      - db
+  frontend:
+    build: ./mtb-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mtb_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
