@@ -1,13 +1,24 @@
 version: '3.8'
 services:
-  app:
+  mtb-frontend:
     build:
       context: .
+      dockerfile: Dockerfile.frontend
       args:
         - NEXT_PUBLIC_APP_ENV=${NEXT_PUBLIC_APP_ENV:-docker}
         - NEXT_PUBLIC_API_URL_PROD=${NEXT_PUBLIC_API_URL_PROD:-http://localhost:3001}
     ports:
       - "${APP_PORT:-3000}:3000"
+    env_file:
+      - .env
+    container_name: mtb-frontend
+    depends_on:
+      - mtb-backend
+  mtb-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
       - "${API_PORT:-3001}:3001"
     env_file:
       - .env
@@ -20,9 +31,10 @@ services:
       SMTP_FROM: ${SMTP_FROM}
     volumes:
       - "${MTB_ANALYSIS_DIR_HOST:-./MTB_WGS_cluster_analysis}:${DIR_PATH:-/app/MTB_WGS_cluster_analysis}"
+    container_name: mtb-backend
     depends_on:
-      - db
-  db:
+      - mysql
+  mysql:
     image: mysql:8.0
     restart: always
     environment:
@@ -33,5 +45,6 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./mtb-cluster.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: mysql
 volumes:
   db_data:

@@ -1,0 +1,10 @@
+{
+  "apps": [
+    {
+      "name": "mtb-backend",
+      "script": "node",
+      "args": "dist/server.js",
+      "cwd": "/app/mtb-backend"
+    }
+  ]
+}
